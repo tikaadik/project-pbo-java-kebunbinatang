@@ -6,30 +6,30 @@
 package javakb.gui;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javakb.dao.DaoKarnivora;
-import javakb.kelas.Karnivora;
-import javakb.service.ServiceKarnivora;
-import javakb.tablemodel.TableModelKarnivora;
+import javakb.dao.DaoHerbivora;
+import javakb.kelas.Herbivora;
+import javakb.service.ServiceHerbivora;
+import javakb.tablemodel.TableModelHerbivora;
 import javax.swing.JOptionPane;
 /**
  *
  * @author LITTLEnstein
  */
-public class FrmKarnivora extends javax.swing.JFrame {
+public class FrmHerbivora extends javax.swing.JFrame {
     
-    private ServiceKarnivora sk;
-    private TableModelKarnivora tableModelKarnivora = new TableModelKarnivora();
-    private Karnivora k;
+    private ServiceHerbivora sk;
+    private TableModelHerbivora tableModelHerbivora = new TableModelHerbivora();
+    private Herbivora k;
     /**
      * Creates new form FrmKarnivora
      */
-    public FrmKarnivora() {
+    public FrmHerbivora() {
         initComponents();
         setLocationRelativeTo(this);
 
         try {
-            sk = new DaoKarnivora(){};
-            tableKarnivora.setModel(tableModelKarnivora);
+            sk = new DaoHerbivora(){};
+            tableHerbivora.setModel(tableModelHerbivora);
             loadData();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage());
@@ -37,10 +37,10 @@ public class FrmKarnivora extends javax.swing.JFrame {
     }
     
     private void loadData() throws SQLException {
-        ArrayList<Karnivora> listKarnivora;
+        ArrayList<Herbivora> listHerbivora;
         try {
-            listKarnivora = sk.getKarnivora();
-            tableModelKarnivora.setData(listKarnivora);
+            listHerbivora = sk.getHerbivora();
+            tableModelHerbivora.setData(listHerbivora);
         } catch (SQLException ex) {
             throw ex;
         }
@@ -74,7 +74,7 @@ public class FrmKarnivora extends javax.swing.JFrame {
         txtJk = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tableKarnivora = new javax.swing.JTable();
+        tableHerbivora = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -98,7 +98,7 @@ public class FrmKarnivora extends javax.swing.JFrame {
 
         jLabel4.setText("Kelompok Binatang");
 
-        tableKarnivora.setModel(new javax.swing.table.DefaultTableModel(
+        tableHerbivora.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -109,18 +109,18 @@ public class FrmKarnivora extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tableKarnivora.addMouseListener(new java.awt.event.MouseAdapter() {
+        tableHerbivora.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableKarnivoraMouseClicked(evt);
+                tableHerbivoraMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(tableKarnivora);
+        jScrollPane2.setViewportView(tableHerbivora);
 
-        jPanel1.setBackground(new java.awt.Color(153, 0, 0));
+        jPanel1.setBackground(new java.awt.Color(0, 102, 0));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Binatang Karnivora");
+        jLabel1.setText("Binatang Herbivora");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -148,12 +148,6 @@ public class FrmKarnivora extends javax.swing.JFrame {
         });
 
         jLabel7.setText("Kode");
-
-        txtId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdActionPerformed(evt);
-            }
-        });
 
         btnInsert.setBackground(new java.awt.Color(0, 255, 0));
         btnInsert.setForeground(new java.awt.Color(255, 255, 255));
@@ -302,9 +296,9 @@ public class FrmKarnivora extends javax.swing.JFrame {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-        int index = tableKarnivora.getSelectedRow();
+        int index = tableHerbivora.getSelectedRow();
         if (index != -1) {
-            Karnivora k = tableModelKarnivora.getKarnivora(tableKarnivora.convertRowIndexToModel(index));
+            Herbivora k = tableModelHerbivora.getHerbivora(tableHerbivora.convertRowIndexToModel(index));
             
             String id = txtId.getText();
             String nama = txtNama.getText();
@@ -322,8 +316,8 @@ public class FrmKarnivora extends javax.swing.JFrame {
             
 
             try {
-                sk.updateKarnivora(k);
-                tableModelKarnivora.updateKarnivora(index, k);
+                sk.updateHerbivora(k);
+                tableModelHerbivora.updateHerbivora(index, k);
                 refresh();
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(rootPane, ex.getMessage());
@@ -333,13 +327,13 @@ public class FrmKarnivora extends javax.swing.JFrame {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        int index = tableKarnivora.getSelectedRow();
+        int index = tableHerbivora.getSelectedRow();
         if (index != -1) {
-            Karnivora k = tableModelKarnivora.getKarnivora(tableKarnivora.convertRowIndexToModel(index));
+            Herbivora k = tableModelHerbivora.getHerbivora(tableHerbivora.convertRowIndexToModel(index));
             if (JOptionPane.showConfirmDialog(null, "Apakah Yakin Di Hapus?", "konfirmasi", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
                 try {
-                    sk.deleteKarnivora(k);
-                    tableModelKarnivora.deleteKarnivora(index);
+                    sk.deleteHerbivora(k);
+                    tableModelHerbivora.deleteHerbivora(index);
                     refresh();
                     JOptionPane.showMessageDialog(rootPane, "Data berhasil dihapus!");
                 } catch (SQLException ex) {
@@ -357,18 +351,18 @@ public class FrmKarnivora extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnRefreshActionPerformed
 
-    private void tableKarnivoraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableKarnivoraMouseClicked
+    private void tableHerbivoraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableHerbivoraMouseClicked
         // TODO add your handling code here:
-        int index = tableKarnivora.getSelectedRow();
+        int index = tableHerbivora.getSelectedRow();
         if (index != -1) {
-            Karnivora k = tableModelKarnivora.getKarnivora(tableKarnivora.convertRowIndexToModel(index));
+            Herbivora k = tableModelHerbivora.getHerbivora(tableHerbivora.convertRowIndexToModel(index));
             txtId.setText(k.getId());
             txtNama.setText(k.getNama());
             txtJk.setText(k.getJk());
             txtJenis.setText(k.getJenis());
             txtHabitat.setText(k.getHabitat());
         }
-    }//GEN-LAST:event_tableKarnivoraMouseClicked
+    }//GEN-LAST:event_tableHerbivoraMouseClicked
 
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
         // TODO add your handling code here:
@@ -378,7 +372,7 @@ public class FrmKarnivora extends javax.swing.JFrame {
         String jenis = txtJenis.getText();
         String habitat = txtHabitat.getText();
 
-        Karnivora k = new Karnivora();
+        Herbivora k = new Herbivora();
         k.setId(id);
         k.setNama(nama);
         k.setJk(jk);
@@ -386,8 +380,8 @@ public class FrmKarnivora extends javax.swing.JFrame {
         k.setHabitat(habitat);
 
         try {
-            sk.insertKarnivora(k);
-            tableModelKarnivora.insertKarnivora(k);
+            sk.insertHerbivora(k);
+            tableModelHerbivora.insertHerbivora(k);
             refresh();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage());
@@ -397,10 +391,6 @@ public class FrmKarnivora extends javax.swing.JFrame {
     private void txtHabitatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHabitatActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtHabitatActionPerformed
-
-    private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdActionPerformed
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -419,7 +409,7 @@ public class FrmKarnivora extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable tableKarnivora;
+    private javax.swing.JTable tableHerbivora;
     private javax.swing.JTextField txtHabitat;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtJenis;

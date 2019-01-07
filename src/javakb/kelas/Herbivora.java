@@ -7,9 +7,9 @@ package javakb.kelas;
 
 /**
  *
- * @author LITTLEnstein
+ * @author user
  */
-public class Karnivora extends Binatang {
+public class Herbivora extends Binatang {
     private String habitat;
     private String berkembangbiak;
     private String id;
@@ -37,4 +37,5 @@ public class Karnivora extends Binatang {
     public String getId() {
         return id; //To change body of generated methods, choose Tools | Templates.
     }
+    
 }

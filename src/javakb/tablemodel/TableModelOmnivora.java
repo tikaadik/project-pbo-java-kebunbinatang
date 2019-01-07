@@ -6,19 +6,19 @@
 package javakb.tablemodel;
 
 import java.util.ArrayList;
-import javakb.kelas.Karnivora;
+import javakb.kelas.Omnivora;
 import javax.swing.table.AbstractTableModel;
 /**
  *
  * @author LITTLEnstein
  */
-public class TableModelKarnivora extends AbstractTableModel{
+public class TableModelOmnivora extends AbstractTableModel{
     
-    private ArrayList<Karnivora> listKarnivora = new ArrayList<>();
+    private ArrayList<Omnivora> listOmnivora = new ArrayList<>();
 
     @Override
     public int getRowCount() {
-        return listKarnivora.size();
+        return listOmnivora.size();
     }
 
     @Override
@@ -29,11 +29,11 @@ public class TableModelKarnivora extends AbstractTableModel{
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch(columnIndex){
-            case 0: return listKarnivora.get(rowIndex).getId();
-            case 1: return listKarnivora.get(rowIndex).getNama();
-            case 2: return listKarnivora.get(rowIndex).getJk();
-            case 3: return listKarnivora.get(rowIndex).getJenis();
-            case 4: return listKarnivora.get(rowIndex).getHabitat();
+            case 0: return listOmnivora.get(rowIndex).getId();
+            case 1: return listOmnivora.get(rowIndex).getNama();
+            case 2: return listOmnivora.get(rowIndex).getJk();
+            case 3: return listOmnivora.get(rowIndex).getJenis();
+            case 4: return listOmnivora.get(rowIndex).getHabitat();
             default: return null;
         }
     }
@@ -50,31 +50,31 @@ public class TableModelKarnivora extends AbstractTableModel{
         }
     }
     
-    public void insertKarnivora(Karnivora k){
-        listKarnivora.add(k);
+    public void insertOmnivora(Omnivora o){
+        listOmnivora.add(o);
         fireTableDataChanged();
     }
     
-    public void updateKarnivora(int index, Karnivora k){
-        listKarnivora.set(index, k);
+    public void updateOmnivora(int index, Omnivora o){
+        listOmnivora.set(index, o);
         fireTableDataChanged();
     }
     
-    public void deleteKarnivora(int index){
-        listKarnivora.remove(index);
+    public void deleteOmnivora(int index){
+        listOmnivora.remove(index);
         fireTableDataChanged();
     }
     
-    public void setData(ArrayList<Karnivora> listKarnivora){
-        this.listKarnivora = listKarnivora;
+    public void setData(ArrayList<Omnivora> listOmnivora){
+        this.listOmnivora = listOmnivora;
         fireTableDataChanged();
     }
     
-    public Karnivora getKarnivora(int index){
-        return listKarnivora.get(index);
+    public Omnivora getOmnivora(int index){
+        return listOmnivora.get(index);
     }
     
     public void clear(){
-        listKarnivora.clear();
+        listOmnivora.clear();
     }
 }

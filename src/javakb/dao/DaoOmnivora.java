@@ -7,34 +7,34 @@ package javakb.dao;
 
 import com.mysql.jdbc.Connection;
 import javakb.config.Koneksi;
-import javakb.kelas.Karnivora;
+import javakb.kelas.Omnivora;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javakb.service.ServiceKarnivora;
+import javakb.service.ServiceOmnivora;
 /**
  *
  * @author LITTLEnstein
  */
-public class DaoKarnivora implements ServiceKarnivora{
+public class DaoOmnivora implements ServiceOmnivora{
     
     private Connection connection;
 
-    public DaoKarnivora() throws SQLException {
+    public DaoOmnivora() throws SQLException {
         connection = Koneksi.getConnection();
     }
     @Override
-    public void insertKarnivora(Karnivora k) throws SQLException {
+    public void insertOmnivora(Omnivora o) throws SQLException {
         PreparedStatement st = null;
-        String sql = "INSERT INTO tbl_karnivora VALUE(?,?,?,?,?)";
+        String sql = "INSERT INTO tbl_omnivora VALUE(?,?,?,?,?)";
         try {
             st = connection.prepareStatement(sql);
-            st.setString(1, k.getId());
-            st.setString(2, k.getNama());
-            st.setString(3, k.getJk());
-            st.setString(4, k.getJenis());
-            st.setString(5, k.getHabitat());
+            st.setString(1, o.getId());
+            st.setString(2, o.getNama());
+            st.setString(3, o.getJk());
+            st.setString(4, o.getJenis());
+            st.setString(5, o.getHabitat());
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;
@@ -46,17 +46,17 @@ public class DaoKarnivora implements ServiceKarnivora{
     }
     
     @Override
-    public void updateKarnivora(Karnivora k) throws SQLException {
+    public void updateOmnivora(Omnivora o) throws SQLException {
         PreparedStatement st = null;
-        String sql = "UPDATE tbl_karnivora SET nama_binatang=?, jk=?, jenis_binatang=?, habitat=? WHERE id_binatang=?";
+        String sql = "UPDATE tbl_omnivora SET nama_binatang=?, jk=?, jenis_binatang=?, habitat=? WHERE id_binatang=?";
         try {
             st = connection.prepareStatement(sql);
             
-            st.setString(1, k.getNama());
-            st.setString(2, k.getJk());
-            st.setString(3, k.getJenis());
-            st.setString(4, k.getHabitat());
-            st.setString(5, k.getId());
+            st.setString(1, o.getNama());
+            st.setString(2, o.getJk());
+            st.setString(3, o.getJenis());
+            st.setString(4, o.getHabitat());
+            st.setString(5, o.getId());
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;
@@ -68,13 +68,13 @@ public class DaoKarnivora implements ServiceKarnivora{
 
     }
     @Override
-    public void deleteKarnivora(Karnivora k) throws SQLException {
+    public void deleteOmnivora(Omnivora o) throws SQLException {
         PreparedStatement st = null;
-        String sql = "DELETE FROM tbl_karnivora WHERE id_binatang=?";
+        String sql = "DELETE FROM tbl_omnivora WHERE id_binatang=?";
 
         try {
             st = connection.prepareCall(sql);
-            st.setString(1, k.getId());
+            st.setString(1, o.getId());
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;
@@ -86,25 +86,25 @@ public class DaoKarnivora implements ServiceKarnivora{
 
     }
     @Override
-    public Karnivora getKarnivoraById(String id) throws SQLException {
+    public Omnivora getOmnivoraById(String id) throws SQLException {
         PreparedStatement st = null;
         ResultSet rs = null;
-        Karnivora k = null;
-        String sql = "SELECT * FROM tbl_karnivora WHERE id_binatang=?";
+        Omnivora o = null;
+        String sql = "SELECT * FROM tbl_omnivora WHERE id_binatang=?";
 
         try {
             st = connection.prepareStatement(sql);
             st.setString(1, id);
             rs = st.executeQuery();
             while (rs.next()) {
-                k = new Karnivora();
-                k.setId(rs.getString("id"));
-                k.setNama(rs.getString("nama"));
-                k.setJk(rs.getString("jk"));
-                k.setJenis(rs.getString("jenis"));
-                k.setHabitat(rs.getString("habitat"));
+                o = new Omnivora();
+                o.setId(rs.getString("id"));
+                o.setNama(rs.getString("nama"));
+                o.setJk(rs.getString("jk"));
+                o.setJenis(rs.getString("jenis"));
+                o.setHabitat(rs.getString("habitat"));
             }
-            return k;
+            return o;
         } catch (SQLException e) {
             throw e;
         } finally {
@@ -118,25 +118,25 @@ public class DaoKarnivora implements ServiceKarnivora{
     }
     
     @Override
-    public ArrayList<Karnivora> getKarnivora() throws SQLException {
+    public ArrayList<Omnivora> getOmnivora() throws SQLException {
         PreparedStatement st = null;
-        ArrayList<Karnivora> listKarnivora = new ArrayList<>();
+        ArrayList<Omnivora> listOmnivora = new ArrayList<>();
         ResultSet rs = null;
-        String sql = "SELECT * FROM tbl_karnivora";
+        String sql = "SELECT * FROM tbl_omnivora";
 
         try {
             st = connection.prepareStatement(sql);
             rs = st.executeQuery();
             while (rs.next()) {
-                Karnivora k = new Karnivora();
-                k.setId(rs.getString("id"));
-                k.setNama(rs.getString("nama"));
-                k.setJk(rs.getString("jk"));
-                k.setJenis(rs.getString("jenis"));
-                k.setHabitat(rs.getString("habitat"));
-                listKarnivora.add(k);
+                Omnivora o = new Omnivora();
+                o.setId(rs.getString("id"));
+                o.setNama(rs.getString("nama"));
+                o.setJk(rs.getString("jk"));
+                o.setJenis(rs.getString("jenis"));
+                o.setHabitat(rs.getString("habitat"));
+                listOmnivora.add(o);
             }
-            return listKarnivora;
+            return listOmnivora;
         } catch (SQLException e) {
             throw e;
         } finally {
@@ -148,4 +148,5 @@ public class DaoKarnivora implements ServiceKarnivora{
             }
         }
     }
+
 }

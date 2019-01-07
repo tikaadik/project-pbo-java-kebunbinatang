@@ -5,7 +5,7 @@ package javakb.config;
     import java.sql.SQLException;
 /**
  *
- * @author Priliyandi
+ * @author LITTLEnstein
  */
 public class Koneksi {
     private static String url = "jdbc:mysql://localhost:3306/db_kebunbinatang";

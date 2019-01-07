@@ -9,7 +9,7 @@ package javakb.kelas;
  *
  * @author LITTLEnstein
  */
-public class Karnivora extends Binatang {
+public class Omnivora extends Binatang {
     private String habitat;
     private String berkembangbiak;
     private String id;

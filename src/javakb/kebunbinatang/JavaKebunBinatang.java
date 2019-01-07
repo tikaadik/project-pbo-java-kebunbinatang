@@ -5,10 +5,12 @@
  */
 package javakb.kebunbinatang;
 import javakb.gui.FrmKarnivora;
+import javakb.gui.FrmOmnivora;
+
 
 /**
  *
- * @author Priliyandi
+ * @author LITTLEnstein
  */
 public class JavaKebunBinatang {
 
@@ -18,9 +20,10 @@ public class JavaKebunBinatang {
     public static void main(String[] args) {
         // TODO code application logic here
         java.awt.EventQueue.invokeLater(new Runnable() {
-            
-            public void run(){                                
-                new FrmKarnivora().setVisible(true);                
+            public void run(){ 
+                new FrmOmnivora().setVisible(true);  
+                //new FrmKarnivora().setVisible(true);     
+                
             }
         });
     }

@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 /**
  *
- * @author Priliyandi
+ * @author LITTLEnstein
  */
 public interface ServiceKarnivora {
     public void insertKarnivora(Karnivora k) throws SQLException;

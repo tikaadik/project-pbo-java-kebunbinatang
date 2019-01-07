@@ -7,27 +7,28 @@ package javakb.dao;
 
 import com.mysql.jdbc.Connection;
 import javakb.config.Koneksi;
-import javakb.kelas.Karnivora;
+import javakb.kelas.Herbivora;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javakb.service.ServiceKarnivora;
+import javakb.kelas.Karnivora;
+import javakb.service.ServiceHerbivora;
+
 /**
  *
- * @author LITTLEnstein
+ * @author user
  */
-public class DaoKarnivora implements ServiceKarnivora{
-    
+public class DaoHerbivora implements ServiceHerbivora {
     private Connection connection;
 
-    public DaoKarnivora() throws SQLException {
+    public DaoHerbivora() throws SQLException {
         connection = Koneksi.getConnection();
     }
     @Override
-    public void insertKarnivora(Karnivora k) throws SQLException {
+    public void insertHerbivora(Herbivora k) throws SQLException {
         PreparedStatement st = null;
-        String sql = "INSERT INTO tbl_karnivora VALUE(?,?,?,?,?)";
+        String sql = "INSERT INTO tbl_herbivora VALUE(?,?,?,?,?)";
         try {
             st = connection.prepareStatement(sql);
             st.setString(1, k.getId());
@@ -46,9 +47,9 @@ public class DaoKarnivora implements ServiceKarnivora{
     }
     
     @Override
-    public void updateKarnivora(Karnivora k) throws SQLException {
+    public void updateHerbivora(Herbivora k) throws SQLException {
         PreparedStatement st = null;
-        String sql = "UPDATE tbl_karnivora SET nama_binatang=?, jk=?, jenis_binatang=?, habitat=? WHERE id_binatang=?";
+        String sql = "UPDATE tbl_herbivora SET nama_binatang=?, jk=?, jenis_binatang=?, habitat=? WHERE id_binatang=?";
         try {
             st = connection.prepareStatement(sql);
             
@@ -68,9 +69,9 @@ public class DaoKarnivora implements ServiceKarnivora{
 
     }
     @Override
-    public void deleteKarnivora(Karnivora k) throws SQLException {
+    public void deleteHerbivora(Herbivora k) throws SQLException {
         PreparedStatement st = null;
-        String sql = "DELETE FROM tbl_karnivora WHERE id_binatang=?";
+        String sql = "DELETE FROM tbl_herbivora WHERE id_binatang=?";
 
         try {
             st = connection.prepareCall(sql);
@@ -86,18 +87,18 @@ public class DaoKarnivora implements ServiceKarnivora{
 
     }
     @Override
-    public Karnivora getKarnivoraById(String id) throws SQLException {
+    public Herbivora getHerbivoraById(String id) throws SQLException {
         PreparedStatement st = null;
         ResultSet rs = null;
-        Karnivora k = null;
-        String sql = "SELECT * FROM tbl_karnivora WHERE id_binatang=?";
+        Herbivora k = null;
+        String sql = "SELECT * FROM tbl_herbivora WHERE id_binatang=?";
 
         try {
             st = connection.prepareStatement(sql);
             st.setString(1, id);
             rs = st.executeQuery();
             while (rs.next()) {
-                k = new Karnivora();
+                k = new Herbivora();
                 k.setId(rs.getString("id"));
                 k.setNama(rs.getString("nama"));
                 k.setJk(rs.getString("jk"));
@@ -118,25 +119,25 @@ public class DaoKarnivora implements ServiceKarnivora{
     }
     
     @Override
-    public ArrayList<Karnivora> getKarnivora() throws SQLException {
+    public ArrayList<Herbivora> getHerbivora() throws SQLException {
         PreparedStatement st = null;
-        ArrayList<Karnivora> listKarnivora = new ArrayList<>();
+        ArrayList<Herbivora> listHerbivora = new ArrayList<>();
         ResultSet rs = null;
-        String sql = "SELECT * FROM tbl_karnivora";
+        String sql = "SELECT * FROM tbl_herbivora";
 
         try {
             st = connection.prepareStatement(sql);
             rs = st.executeQuery();
             while (rs.next()) {
-                Karnivora k = new Karnivora();
+                Herbivora k = new Herbivora();
                 k.setId(rs.getString("id"));
                 k.setNama(rs.getString("nama"));
                 k.setJk(rs.getString("jk"));
                 k.setJenis(rs.getString("jenis"));
                 k.setHabitat(rs.getString("habitat"));
-                listKarnivora.add(k);
+                listHerbivora.add(k);
             }
-            return listKarnivora;
+            return listHerbivora;
         } catch (SQLException e) {
             throw e;
         } finally {
